@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_practica3_cenafilosofos" default="compile.module.practica3_cenafilosofos">
+  <dirname property="module.practica3_cenafilosofos.basedir" file="${ant.file.module_practica3_cenafilosofos}"/>
+  
+  <property name="module.jdk.home.practica3_cenafilosofos" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.practica3_cenafilosofos" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.practica3_cenafilosofos" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.practica3_cenafilosofos" value="-encoding UTF-8 -source 11 -target 11 ${compiler.args}"/>
+  
+  <property name="practica3_cenafilosofos.output.dir" value="undefined"/>
+  <property name="practica3_cenafilosofos.testoutput.dir" value="undefined"/>
+  
+  <path id="practica3_cenafilosofos.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="practica3_cenafilosofos.module.production.classpath">
+    <path refid="${module.jdk.classpath.practica3_cenafilosofos}"/>
+  </path>
+  
+  <path id="practica3_cenafilosofos.runtime.production.module.classpath"/>
+  
+  <path id="practica3_cenafilosofos.module.classpath">
+    <path refid="${module.jdk.classpath.practica3_cenafilosofos}"/>
+  </path>
+  
+  <path id="practica3_cenafilosofos.runtime.module.classpath"/>
+  
+  
+  <patternset id="excluded.from.module.practica3_cenafilosofos">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.practica3_cenafilosofos">
+    <patternset refid="excluded.from.module.practica3_cenafilosofos"/>
+  </patternset>
+  
+  
+  <target name="compile.module.practica3_cenafilosofos" depends="compile.module.practica3_cenafilosofos.production,compile.module.practica3_cenafilosofos.tests" description="Compile module practica3_cenafilosofos"/>
+  
+  <target name="compile.module.practica3_cenafilosofos.production" depends="register.custom.compilers" description="Compile module practica3_cenafilosofos; production classes"/>
+  
+  <target name="compile.module.practica3_cenafilosofos.tests" depends="register.custom.compilers,compile.module.practica3_cenafilosofos.production" description="compile module practica3_cenafilosofos; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.practica3_cenafilosofos" description="cleanup module">
+    <delete dir="${practica3_cenafilosofos.output.dir}"/>
+    <delete dir="${practica3_cenafilosofos.testoutput.dir}"/>
+  </target>
+</project>
