@@ -22,9 +22,27 @@ public class Selection {
 	public void setAlgoritmo(String algoritmo) {
 		this.algoritmo = algoritmo;
 	}
+	public Problem buildSelection(String problema, String algoritmo) {
+		Problem selectedProblem = null;
+		switch(problema) {
+		case "PHILOSOPHERS_DINNER": 
+			switch(algoritmo) {
+			case "MUTEX": selectedProblem = new Problem(Problem.PHILOSOPHERS_DINNER, Control.MUTEX, 100, 100);
+			}
+		break;
+		
+		case "PRODUCER_CONSUMER": 
+			switch(algoritmo) {
+			case "MUTEX": selectedProblem = new Problem(Problem.PRODUCER_CONSUMER, Control.MUTEX, 100, 100);
+			}
+		break;
+		}
+		return selectedProblem;
+	}
 	public ArrayList<State>[] runSelected() {
-		//Problem selectedProblem = new Problem(problema, algoritmo, 100, 100);
-		Problem selectedProblem = new Problem(Problem.PHILOSOPHERS_DINNER, Control.MUTEX, 10, 100);
+		Problem selectedProblem;
+		selectedProblem = buildSelection(problema, algoritmo);
+		//Problem selectedProblem = new Problem(Problem.PHILOSOPHERS_DINNER, Control.MUTEX, 10, 100);
 		ArrayList<State>[] matrix = null;
 		selectedProblem.start();
 		while(true) {
