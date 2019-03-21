@@ -16,6 +16,8 @@ public class diagramController {
 
 	private Object[] test;
 	private ArrayList<State>[] matrix;
+	private int[] errors;
+	private Selection selection;
 	
 	public diagramController() {
 	}
@@ -27,9 +29,19 @@ public class diagramController {
 	}
 
 	@RequestMapping(value = "/selection", method = RequestMethod.POST)
-	public ResponseEntity<String> getSelection(@RequestBody Selection selection) throws URISyntaxException {
+	public ResponseEntity<String> getSelection(@RequestBody Selection currSelection) throws URISyntaxException {
+		selection = currSelection;
 		matrix = selection.runSelected();
 		URI location = new URI("http://localhost:8080/selection");
 		return ResponseEntity.created(location).header("ResponseHeader", "Value").body("Hello");
+	}
+	
+	@GetMapping("/errors")
+	public int[] sendErrors() {
+		errors = selection.getErrors();
+		if(errors == null) {
+			return null;
+		}
+		return errors;
 	}
 }
